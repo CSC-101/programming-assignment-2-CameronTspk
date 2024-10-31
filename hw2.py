@@ -74,25 +74,58 @@ def validate_route(city_links:list[list[str]],route_city_list:list[str]) -> bool
 #create a function which will test edge cases first route list = 0 or 1
 #so that if o occurs its true and if only one name occurs its true
 #now if list of two or greater we iterate in pairs of two and evaluate wether any pairing occurs in the city list
+# any case of route length less than two will return true
     if len(route_city_list) < 2:
         print("less than 2")
         return True
     else:
         j=0
+        #checks through whether the ordered route_list pairing appear in the list
         for i in range(len(route_city_list) - 1):
             city_one = route_city_list[j]
             city_two = route_city_list[j+1]
             if not [city_one, city_two] in city_links:
-                return False
+                if not [city_two, city_one] in city_links:
+                    return False
             j += 1
         return True
 
+"""
+git add "./hw2.py"
+git add "./hw2_tests.py"
+git commit -m "Message"
+git push
+"""
 
 
+# Part 5
+def longest_repetition(number_list: list[int]) -> int:
+    if not number_list:
+        return None
+
+    longest_start = 0  # The starting index of the longest repetition
+    longest_length = 1  # Length of the longest repetition found so far
+    current_start = 0  # Start index of the current repetition
+    current_length = 1  # Length of the current repetition
+
+    for i in range(1, len(number_list)):
+        if number_list[i] == number_list[i - 1]:
+            # If the current number is the same as the previous one, increase the current repetition length
+            current_length += 1
+        else:
+            # Check if the current repetition is the longest found so far
+            if current_length > longest_length:
+                longest_length = current_length
+                longest_start = current_start
+
+            # Reset for a new sequence
+            current_start = i
+            current_length = 1
+
+    # Final check in case the longest repetition is at the end of the list
+    if current_length > longest_length:
+        longest_start = current_start
+
+    return longest_start
 
 
-print(validate_route(city_list,route_list))
-
-#def longest_repetition(evaluated_list: list[int]) -> Optional[int]:
-    #start evaluating through the list say when the following number is equal we increase the length by 1 and when it's not we
-# create a new list storing the higher one after

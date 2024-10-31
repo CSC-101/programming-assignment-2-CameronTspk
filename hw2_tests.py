@@ -104,9 +104,10 @@ class TestCases(unittest.TestCase):
             ['atascadero', 'santa margarita'],
             ['atascadero', 'creston']
         ]
-        route_list = ['san luis obispo', 'santa margarita', 'atascadero', 'creston']
+        route_list = ['san luis obispo', 'santa margarita','atascadero']
 
         self.assertEqual(validate_route(city_list, route_list), True)
+
     def test_invalid_route(self):
         city_list = [
             ['san luis obispo', 'santa margarita'],
@@ -114,11 +115,45 @@ class TestCases(unittest.TestCase):
             ['atascadero', 'santa margarita'],
             ['atascadero', 'creston']
         ]
-        route_list = ['san luis obispo', 'atascadero', ]
+        route_list = ['san luis obispo','atascadero']
 
         self.assertEqual(validate_route(city_list, route_list), False)
 
+    def test_single_route(self):
+        city_list = [
+            ['san luis obispo', 'santa margarita'],
+            ['san luis obispo', 'pismo beach'],
+            ['atascadero', 'santa margarita'],
+            ['atascadero', 'creston']
+        ]
+        route_list = ['san luis obispo']
+
+        self.assertEqual(validate_route(city_list, route_list), True)
+
+    def test_empty_route(self):
+        city_list = [
+            ['san luis obispo', 'santa margarita'],
+            ['san luis obispo', 'pismo beach'],
+            ['atascadero', 'santa margarita'],
+            ['atascadero', 'creston']
+        ]
+        route_list = []
+
+        self.assertEqual(validate_route(city_list, route_list), True)
+
     # Part 6
+    def test_longest_rep_mixed(self):
+        complex_list = [1, 1, 2, 2, 1, 1, 1, 3]
+        self.assertEqual(longest_repetition(complex_list), 4)
+
+    def test_longest_rep_same(self):
+        complex_list = [1, 1, 2, 2, 1, 1, 3, 3]
+        self.assertEqual(longest_repetition(complex_list), 0)
+
+    def test_longest_rep_empty(self):
+        complex_list = []
+        self.assertEqual(longest_repetition(complex_list), None)
+
 
 
 
