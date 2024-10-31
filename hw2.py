@@ -89,13 +89,7 @@ def validate_route(city_links:list[list[str]],route_city_list:list[str]) -> bool
 
 
 
-city_list = [
-            ['san luis obispo', 'santa margarita'],
-            ['san luis obispo', 'pismo beach'],
-            ['atascadero', 'santa margarita'],
-            ['atascadero', 'creston']
-        ]
-route_list =['San Diego', 'creston', 'slo']
+
 
 print(validate_route(city_list,route_list))
 
